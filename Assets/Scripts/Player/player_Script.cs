@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class player_Script : MonoBehaviour
 {
     public bool block = false;
+    public int health = 100;
 
     private enemy_Script enemy;
     private int defence = 10;
@@ -15,8 +16,7 @@ public class player_Script : MonoBehaviour
     private Slider slider;
 
     [SerializeField] private timer timer;
-    [SerializeField] private int health = 100;
-
+    
     void Start()
     {
         timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<timer>();   

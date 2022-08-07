@@ -6,6 +6,7 @@ using UnityEngine;
 public class enemy_Script : MonoBehaviour
 {
     public bool block = false;
+    public int health = 100;
     
     private player_Script player;
     private timer timer;
@@ -13,8 +14,7 @@ public class enemy_Script : MonoBehaviour
     private bool start = false;
     private int random;
     private Slider slider;
-
-    [SerializeField] private int health = 100;
+    
     [SerializeField] private int defence = 5;
     [SerializeField] private int damage = 15;
 
