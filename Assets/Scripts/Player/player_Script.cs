@@ -1,24 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class player_Script : MonoBehaviour
 {
     public bool block = false;
 
     private enemy_Script enemy;
-    [SerializeField] private int health = 100;
     private int defence = 10;
     private int melee_Dam = 25;
     private int magic_Dam = 45;
     private bool can_Attack = true;
+    private Slider slider;
 
     [SerializeField] private timer timer;
+    [SerializeField] private int health = 100;
 
     void Start()
     {
         timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<timer>();   
         enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<enemy_Script>();
+        slider = GameObject.FindGameObjectWithTag("Health Bar").GetComponent<Slider>();
+        slider.maxValue = health;
+        slider.value = health;
     }
 
     void Update()
@@ -119,9 +124,17 @@ public class player_Script : MonoBehaviour
 
     public void take_Damage(int damage)
     {
-        if(block){health -= (damage - defence);}
+        if(block)
+        {
+            health -= (damage - defence);
+            slider.value = health;
+        }
         
-        else{health -= damage;}
+        else
+        {
+            health -= damage;
+            slider.value = health;    
+        }
     }
 
 
