@@ -5,13 +5,16 @@ using UnityEngine;
 
 public class enemy_Script : MonoBehaviour
 {
-    private GameObject player;
+    public bool block = false;
+    
+    private player_Script player;
     private timer timer;
-    private bool can_Attack = false;
+    private bool can_Attack = true;
     private bool start = false;
     private int random;
+
     [SerializeField] private int health = 100;
-    [SerializeField] private int defence = 15;
+    [SerializeField] private int defence = 5;
     [SerializeField] private int damage = 15;
 
     
@@ -19,7 +22,7 @@ public class enemy_Script : MonoBehaviour
     void Start()
     {
         timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<timer>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<player_Script>();
     }
 
     void Update()
@@ -29,26 +32,26 @@ public class enemy_Script : MonoBehaviour
 
     private void attack(float time)
     {
-
+        random = Random.Range(1,10);
         if(start == false)
         {
-            StartCoroutine(wait(1f));
-            random = Random.Range(1,10);
+            StartCoroutine(wait_1());
         }
 
-        if(can_Attack)
+        if(can_Attack && start)
         {
             switch(random){
-                case int n when(n >= 1 && n <= 3):
+                case int n when(n >= 1 && n <= 4):
+                    player.take_Damage(damage);
+                    
                     can_Attack = false;
-                    random = Random.Range(1,10);
                     Debug.Log("Attack_E");
                     StartCoroutine(wait(2f));
                     break;
 
-                case int n when(n >= 6 && n <= 8f):
+                case int n when(n >= 6 && n <= 9f):
                     can_Attack = false;
-                    random = Random.Range(1,10);
+                    block = true;
                     Debug.Log("Block_E");
                     StartCoroutine(wait(2f));
                     break;
@@ -57,10 +60,23 @@ public class enemy_Script : MonoBehaviour
         
     }
 
+    public void take_Damage(int damage)
+    {
+        if(block){health -= (damage - defence);}
+        else{health -= (damage);}
+        
+    }
+
     IEnumerator wait(float i)
     {
         yield return new WaitForSeconds(i);
         can_Attack = true;
+        block = false;
+    }
+
+    IEnumerator wait_1()
+    {
+        yield return new WaitForSeconds(1f);
         start = true;
     }
 }

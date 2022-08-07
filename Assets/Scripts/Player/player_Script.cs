@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class player_Script : MonoBehaviour
 {
+    public bool block = false;
+
+    private enemy_Script enemy;
+    [SerializeField] private int health = 100;
+    private int defence = 10;
+    private int melee_Dam = 25;
+    private int magic_Dam = 45;
+    private bool can_Attack = true;
 
     [SerializeField] private timer timer;
-    private int health = 100;
-    private int defence = 80;
-    private int danage = 50;
-    private bool can_Attack = true;
 
     void Start()
     {
         timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<timer>();   
+        enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<enemy_Script>();
     }
 
     void Update()
@@ -28,11 +33,14 @@ public class player_Script : MonoBehaviour
         {
             if(Mathf.RoundToInt(time) % 2 == 0)
             {
+                enemy.take_Damage(melee_Dam);
+
                 can_Attack = false;
                 Debug.Log("Melee");
                 StartCoroutine(attack_Timer(2f));
             }
         }
+
         //Melee Rampage
         else if(Input.GetKey(KeyCode.UpArrow))
         {
@@ -40,6 +48,8 @@ public class player_Script : MonoBehaviour
             {
                 if(Mathf.RoundToInt(time) % 2 == 0)
                 {
+                    enemy.take_Damage(Mathf.RoundToInt(melee_Dam * 1.2f));
+
                     can_Attack = false;
                     Debug.Log("Melee Rampage");
                     StartCoroutine(attack_Timer(4f));
@@ -52,12 +62,16 @@ public class player_Script : MonoBehaviour
         {
             switch(time){
                 case float n when(n >= 3.8f && n <= 5.2f):
+                    enemy.take_Damage(magic_Dam);
+                    
                     can_Attack = false;
                     Debug.Log("Magic");
                     StartCoroutine(attack_Timer(2f));
                     break;
 
                 case float n when(n >= 8.8f && n <= 10f):
+                    enemy.take_Damage(magic_Dam);
+                    
                     can_Attack = false;
                     Debug.Log("Magic");
                     StartCoroutine(attack_Timer(2f));
@@ -72,12 +86,16 @@ public class player_Script : MonoBehaviour
             {
                 switch(time){
                 case float n when(n >= 3.8f && n <= 5.2f):
+                    enemy.take_Damage(Mathf.RoundToInt(magic_Dam * 1.2f));
+
                     can_Attack = false;
                     Debug.Log("Magic Rampage");
                     StartCoroutine(attack_Timer(4f));
                     break;
 
                 case float n when(n >= 8.8f && n <= 10f):
+                    enemy.take_Damage(Mathf.RoundToInt(magic_Dam * 1.2f));
+
                     can_Attack = false;
                     Debug.Log("Magic Rampage");
                     StartCoroutine(attack_Timer(4f));
@@ -91,11 +109,29 @@ public class player_Script : MonoBehaviour
         {
             if(Mathf.RoundToInt(time) % 2 != 0)
             {
-                Debug.Log("Dodge");
+                block = true;
+                can_Attack = false;
+                Debug.Log("Block");
+                StartCoroutine(block_Timer(2f));
             }
         }
     }
 
+    public void take_Damage(int damage)
+    {
+        if(block){health -= (damage - defence);}
+        
+        else{health -= damage;}
+    }
+
+
+    IEnumerator block_Timer(float i)
+    {
+        yield return new WaitForSeconds(i);
+        block = false;
+        can_Attack = true;
+    }
+    
     //Decide cuanto tiempo para poder atacar
     IEnumerator attack_Timer(float i)
     {
