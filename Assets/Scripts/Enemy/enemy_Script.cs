@@ -7,6 +7,7 @@ public class enemy_Script : MonoBehaviour
 {
     public bool block = false;
     public int health = 100;
+    public int score;
     
     private player_Script player;
     private timer timer;
@@ -17,6 +18,7 @@ public class enemy_Script : MonoBehaviour
     
     [SerializeField] private int defence = 5;
     [SerializeField] private int damage = 15;
+    [SerializeField] private int mag_Damage = 35;
 
     
 
@@ -58,6 +60,14 @@ public class enemy_Script : MonoBehaviour
                     block = true;
                     Debug.Log("Block_E");
                     StartCoroutine(wait(2f));
+                    break;
+
+                case int n when(n == 5 || n == 10):
+                    player.take_Damage(mag_Damage);
+                    
+                    can_Attack = false;
+                    Debug.Log("Magic_E");
+                    StartCoroutine(wait(4f));
                     break;
             }
         }

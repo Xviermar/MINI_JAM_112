@@ -7,7 +7,6 @@ public class timer : MonoBehaviour
 {
     public float timer_Time = 10;
     [SerializeField]private TextMeshProUGUI text;
-    private float force = .5f;
 
     void Update()
     {
