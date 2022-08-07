@@ -33,6 +33,7 @@ public class player_State : MonoBehaviour
             SceneManager.LoadScene("store");
             score_S.add_Score(enemy.score);
             score += player.health;
+            player.health += 60;
         }
     }
 

@@ -86,7 +86,6 @@ public class enemy_Script : MonoBehaviour
             health -= (damage);
             slider.value = health;    
         }
-        
     }
 
     IEnumerator wait(float i)
