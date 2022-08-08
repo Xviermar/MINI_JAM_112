@@ -57,7 +57,7 @@ public class player_Script : MonoBehaviour
 
                     can_Attack = false;
                     Debug.Log("Melee Rampage");
-                    StartCoroutine(attack_Timer(4f));
+                    StartCoroutine(attack_Timer(4.5f));
                 }
             }
         }
@@ -71,7 +71,7 @@ public class player_Script : MonoBehaviour
                     
                     can_Attack = false;
                     Debug.Log("Magic");
-                    StartCoroutine(attack_Timer(2f));
+                    StartCoroutine(attack_Timer(3.5f));
                     break;
 
                 case float n when(n >= 8.8f && n <= 10f):
@@ -79,7 +79,7 @@ public class player_Script : MonoBehaviour
                     
                     can_Attack = false;
                     Debug.Log("Magic");
-                    StartCoroutine(attack_Timer(2f));
+                    StartCoroutine(attack_Timer(3.5f));
                     break;
             }
         }
@@ -95,7 +95,7 @@ public class player_Script : MonoBehaviour
 
                     can_Attack = false;
                     Debug.Log("Magic Rampage");
-                    StartCoroutine(attack_Timer(4f));
+                    StartCoroutine(attack_Timer(5.5f));
                     break;
 
                 case float n when(n >= 8.8f && n <= 10f):
@@ -103,7 +103,7 @@ public class player_Script : MonoBehaviour
 
                     can_Attack = false;
                     Debug.Log("Magic Rampage");
-                    StartCoroutine(attack_Timer(4f));
+                    StartCoroutine(attack_Timer(5.5f));
                     break;
                 }
             }
