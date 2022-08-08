@@ -14,6 +14,7 @@ public class player_Script : MonoBehaviour
     private int magic_Dam = 45;
     private bool can_Attack = true;
     private Slider slider;
+    private Animator anim;
 
     [SerializeField] private timer timer;
     
@@ -22,6 +23,7 @@ public class player_Script : MonoBehaviour
         timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<timer>();   
         enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<enemy_Script>();
         slider = GameObject.FindGameObjectWithTag("Health Bar").GetComponent<Slider>();
+        anim = gameObject.GetComponent<Animator>();
         slider.maxValue = health;
         slider.value = health;
     }
@@ -33,16 +35,24 @@ public class player_Script : MonoBehaviour
 
     private void attack(float time)
     {
+        if(anim.GetBool("Attack"))
+        {
+            StartCoroutine(anim_Timer());
+        }
+        
         //Melee
         if(Input.GetKeyDown(KeyCode.UpArrow) && can_Attack)
         {
             if(Mathf.RoundToInt(time) % 2 == 0)
             {
-                enemy.take_Damage(melee_Dam);
-
+                anim.SetBool("Attack", true);
+                StartCoroutine(dam(melee_Dam, false));
+                
                 can_Attack = false;
                 Debug.Log("Melee");
+
                 StartCoroutine(attack_Timer(2f));
+                
             }
         }
 
@@ -53,7 +63,8 @@ public class player_Script : MonoBehaviour
             {
                 if(Mathf.RoundToInt(time) % 2 == 0)
                 {
-                    enemy.take_Damage(Mathf.RoundToInt(melee_Dam * 1.2f));
+                    anim.SetBool("Attack", true);
+                    StartCoroutine(dam(melee_Dam, true));
 
                     can_Attack = false;
                     Debug.Log("Melee Rampage");
@@ -67,7 +78,9 @@ public class player_Script : MonoBehaviour
         {
             switch(time){
                 case float n when(n >= 3.8f && n <= 5.2f):
-                    enemy.take_Damage(magic_Dam);
+                    
+                    anim.SetBool("Attack", true);
+                    StartCoroutine(dam(magic_Dam, false));
                     
                     can_Attack = false;
                     Debug.Log("Magic");
@@ -75,7 +88,8 @@ public class player_Script : MonoBehaviour
                     break;
 
                 case float n when(n >= 8.8f && n <= 10f):
-                    enemy.take_Damage(magic_Dam);
+                    anim.SetBool("Attack", true);
+                    StartCoroutine(dam(magic_Dam, false));
                     
                     can_Attack = false;
                     Debug.Log("Magic");
@@ -91,7 +105,8 @@ public class player_Script : MonoBehaviour
             {
                 switch(time){
                 case float n when(n >= 3.8f && n <= 5.2f):
-                    enemy.take_Damage(Mathf.RoundToInt(magic_Dam * 1.2f));
+                    anim.SetBool("Attack", true);
+                    StartCoroutine(dam(magic_Dam, true));
 
                     can_Attack = false;
                     Debug.Log("Magic Rampage");
@@ -99,7 +114,8 @@ public class player_Script : MonoBehaviour
                     break;
 
                 case float n when(n >= 8.8f && n <= 10f):
-                    enemy.take_Damage(Mathf.RoundToInt(magic_Dam * 1.2f));
+                    anim.SetBool("Attack", true);
+                    StartCoroutine(dam(magic_Dam, true));
 
                     can_Attack = false;
                     Debug.Log("Magic Rampage");
@@ -137,7 +153,6 @@ public class player_Script : MonoBehaviour
         }
     }
 
-
     IEnumerator block_Timer(float i)
     {
         yield return new WaitForSeconds(i);
@@ -151,5 +166,28 @@ public class player_Script : MonoBehaviour
         yield return new WaitForSeconds(i);
         can_Attack = true;
     }
+
+    IEnumerator anim_Timer()
+    {
+        can_Attack = false; 
+        
+        yield return new WaitForSeconds(1f);
+        
+        can_Attack = false;
+        anim.SetBool("Attack", false);
+    }
+
+    IEnumerator dam(int damage, bool rampage)
+    {
+        yield return new WaitForSeconds(.8f);
+        if(rampage)
+        {
+            enemy.take_Damage(damage * Mathf.RoundToInt(1.2f));
+        }else
+        {
+            enemy.take_Damage(damage);
+        }
+    }
+
 }
 
