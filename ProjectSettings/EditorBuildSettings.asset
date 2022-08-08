@@ -12,11 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: ddfe447b1ecbc7343ac20c3666c71a47
   - enabled: 1
-    path: Assets/Scenes/test_Scene_1.unity
-    guid: ce312f962add80148a8c76de17adc5a8
+    path: Assets/Scenes/Funkiviathan.unity
+    guid: 2992e6a3dc476104c9059a08724673c8
   - enabled: 1
     path: Assets/Scenes/store.unity
     guid: 2b25da880d46c4c40a562b1872e4410f
+  - enabled: 1
+    path: Assets/Scenes/test_Scene_1.unity
+    guid: ce312f962add80148a8c76de17adc5a8
   - enabled: 1
     path: Assets/Scenes/game_Over.unity
     guid: 035ef2596a451614c96480f05ca51b99

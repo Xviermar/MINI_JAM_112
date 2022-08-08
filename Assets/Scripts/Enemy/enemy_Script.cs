@@ -16,9 +16,9 @@ public class enemy_Script : MonoBehaviour
     private int random;
     private Slider slider;
     
-    [SerializeField] private int defence = 5;
-    [SerializeField] private int damage = 15;
-    [SerializeField] private int mag_Damage = 35;
+    [SerializeField] private int defence = 5 + level_Scaling.level;
+    [SerializeField] private int damage = 15 + level_Scaling.level;
+    [SerializeField] private int mag_Damage = 35 + level_Scaling.level;
 
     
 

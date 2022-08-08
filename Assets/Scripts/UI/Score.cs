@@ -9,10 +9,6 @@ public class Score : MonoBehaviour
 
     private player_State player;
 
-    private void Start() {
-        //player = GameObject.FindGameObjectWithTag("Player").GetComponent<player_State>();
-    }
-
     private void Update() {
         display();
     }
