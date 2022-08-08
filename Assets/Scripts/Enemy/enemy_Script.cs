@@ -57,10 +57,11 @@ public class enemy_Script : MonoBehaviour
             switch(random){
                 case int n when(n >= 1 && n <= 4):
                     anim.SetBool("Attack", true);
-                    player.take_Damage(damage);
+                    
                     
                     can_Attack = false;
                     Debug.Log("Attack_E");
+                    StartCoroutine(dam(damage));
                     StartCoroutine(wait(2f));
                     break;
 
@@ -101,6 +102,7 @@ public class enemy_Script : MonoBehaviour
     IEnumerator wait(float i)
     {
         yield return new WaitForSeconds(i);
+      
         can_Attack = true;
         block = false;
     }
@@ -116,5 +118,12 @@ public class enemy_Script : MonoBehaviour
         yield return new WaitForSeconds(.7f);   
         
         anim.SetBool("Attack", false);
+          
+    }
+
+    IEnumerator dam(int damage)
+    {
+        yield return new WaitForSeconds(1f);
+        player.take_Damage(damage);
     }
 }
