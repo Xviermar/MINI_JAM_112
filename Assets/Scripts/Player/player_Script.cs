@@ -46,9 +46,10 @@ public class player_Script : MonoBehaviour
             if(Mathf.RoundToInt(time) % 2 == 0)
             {
                 anim.SetBool("Attack", true);
+                can_Attack = false;
                 StartCoroutine(dam(melee_Dam, false));
                 
-                can_Attack = false;
+                
                 Debug.Log("Melee");
 
                 StartCoroutine(attack_Timer(2f));
@@ -63,7 +64,7 @@ public class player_Script : MonoBehaviour
             {
                 if(Mathf.RoundToInt(time) % 2 == 0)
                 {
-                    anim.SetBool("Attack", true);
+                   anim.SetBool("Attack", true);
                     StartCoroutine(dam(melee_Dam, true));
 
                     can_Attack = false;
@@ -169,11 +170,8 @@ public class player_Script : MonoBehaviour
 
     IEnumerator anim_Timer()
     {
-        can_Attack = false; 
+        yield return new WaitForSeconds(.8f);   
         
-        yield return new WaitForSeconds(1f);
-        
-        can_Attack = false;
         anim.SetBool("Attack", false);
     }
 
