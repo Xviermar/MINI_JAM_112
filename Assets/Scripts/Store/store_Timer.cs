@@ -6,7 +6,7 @@ using TMPro;
 
 public class store_Timer : MonoBehaviour
 {
-    [SerializeField] private float timer_Time = 5;
+    [SerializeField] private float timer_Time = 15;
     [SerializeField] private TextMeshProUGUI text;
 
     void Update()
@@ -16,7 +16,7 @@ public class store_Timer : MonoBehaviour
             timer_Time -= Time.deltaTime;
         }else
         {
-            SceneManager.LoadScene("Funkiviathan");
+            scene_Change.change = true;
         }
 
         display(timer_Time);

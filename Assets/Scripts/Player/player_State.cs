@@ -37,6 +37,11 @@ public class player_State : MonoBehaviour
             score += player.health;
             player.health += 60;
             level_Scaling.level += 3;
+            scene_Change.next_Lvl += 1;
+            if(scene_Change.next_Lvl >= 2)
+            {
+                scene_Change.next_Lvl = 0;
+            }
         }
     }
 

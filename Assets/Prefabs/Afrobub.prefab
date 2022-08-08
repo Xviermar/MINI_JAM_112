@@ -102,8 +102,8 @@ MonoBehaviour:
   health: 175
   score: 180
   defence: 10
-  damage: 28
-  mag_Damage: 40
+  damage: 0
+  mag_Damage: 0
 --- !u!95 &5512053552749888949
 Animator:
   serializedVersion: 4
