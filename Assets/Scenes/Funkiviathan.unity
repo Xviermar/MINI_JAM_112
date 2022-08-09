@@ -1446,7 +1446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   block: 0
-  health: 100
+  health: 175
   timer: {fileID: 0}
 --- !u!212 &1657584044
 SpriteRenderer:

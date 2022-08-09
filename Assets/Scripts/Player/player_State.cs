@@ -23,7 +23,7 @@ public class player_State : MonoBehaviour
     private void Update() {
         
         //Game Over
-        if(player.health <= 0)
+        if(player_Health.current_Health <= 0)
         {
             Destroy(gameObject);
             SceneManager.LoadScene("game_Over");
@@ -32,17 +32,40 @@ public class player_State : MonoBehaviour
         //Win
         if(enemy.health <= 0)
         {
-            SceneManager.LoadScene("store");
-            score_S.add_Score(enemy.score);
-            score += player.health;
-            player.health += 60;
-            level_Scaling.level += 3;
-            scene_Change.next_Lvl += 1;
-            if(scene_Change.next_Lvl >= 2)
-            {
-                scene_Change.next_Lvl = 0;
-            }
+            GameObject.FindGameObjectWithTag("Enemy").GetComponent<Animator>().SetBool("Death",true);
+            enemy.can_Attack = false;
+
+            StartCoroutine(enemy_Death());
+            
+            
         }
+    }
+
+    IEnumerator enemy_Death()
+    {
+        yield return new WaitForSeconds(2f);
+
+        GameObject.FindGameObjectWithTag("Enemy").GetComponent<Animator>().SetBool("Death",false);
+        //Destroy(GameObject.FindGameObjectWithTag("Enemy"));
+
+        score_S.add_Score(enemy.score);
+        score += player_Health.current_Health;
+        player_Health.current_Health += 60;
+        level_Scaling.level += 3;
+        scene_Change.next_Lvl += 1;
+        enemy.can_Attack = true;
+        
+         if(scene_Change.next_Lvl >= 2)
+        {
+            scene_Change.next_Lvl = 0;
+        }
+
+        SceneManager.LoadScene("store");
+        
+
+            
+
+       
     }
 
 }

@@ -8,10 +8,10 @@ public class enemy_Script : MonoBehaviour
     public bool block = false;
     public int health = 100;
     public int score;
+    public bool can_Attack = true;
     
     private player_Script player;
     private timer timer;
-    private bool can_Attack = true;
     private bool start = false;
     private int random;
     private Slider slider;

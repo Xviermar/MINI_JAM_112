@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class player_Script : MonoBehaviour
 {
     public bool block = false;
-    public int health = 100;
+    //public static int health = 175;
 
     private enemy_Script enemy;
     private int defence = 10;
@@ -18,14 +18,15 @@ public class player_Script : MonoBehaviour
 
     [SerializeField] private timer timer;
     
+    
     void Start()
     {
         timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<timer>();   
         enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<enemy_Script>();
         slider = GameObject.FindGameObjectWithTag("Health Bar").GetComponent<Slider>();
         anim = gameObject.GetComponent<Animator>();
-        slider.maxValue = health;
-        slider.value = health;
+        slider.maxValue = player_Health.max_Health;
+        slider.value = player_Health.current_Health;
     }
 
     void Update()
@@ -143,14 +144,14 @@ public class player_Script : MonoBehaviour
     {
         if(block)
         {
-            health -= (damage - defence);
-            slider.value = health;
+            player_Health.current_Health -= (damage - defence);
+            slider.value = player_Health.current_Health;
         }
         
         else
         {
-            health -= damage;
-            slider.value = health;    
+            player_Health.current_Health -= damage;
+            slider.value = player_Health.current_Health;    
         }
     }
 
