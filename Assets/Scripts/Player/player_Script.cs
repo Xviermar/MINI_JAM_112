@@ -9,9 +9,10 @@ public class player_Script : MonoBehaviour
     //public static int health = 175;
 
     private enemy_Script enemy;
-    private int defence = 10;
-    private int melee_Dam = 25;
-    private int magic_Dam = 45;
+    public static int defence = 10;
+    public static int melee_Dam = 25;
+    public static int magic_Dam = 45;
+    public static float ramp = 1.2f;
     private bool can_Attack = true;
     private Slider slider;
     private Animator anim;
@@ -130,13 +131,13 @@ public class player_Script : MonoBehaviour
         //Dodge hacer el dodge cargado cuando haya enemigo pra testear
         else if(Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if(Mathf.RoundToInt(time) % 2 != 0)
-            {
-                block = true;
-                can_Attack = false;
-                Debug.Log("Block");
-                StartCoroutine(block_Timer(2f));
-            }
+          
+            
+            block = true;
+            can_Attack = false;
+            Debug.Log("Block");
+            StartCoroutine(block_Timer(2f));
+            
         }
     }
 
@@ -181,7 +182,7 @@ public class player_Script : MonoBehaviour
         yield return new WaitForSeconds(.8f);
         if(rampage)
         {
-            enemy.take_Damage(damage * Mathf.RoundToInt(1.2f));
+            enemy.take_Damage(damage * Mathf.RoundToInt(ramp));
         }else
         {
             enemy.take_Damage(damage);
