@@ -7,6 +7,8 @@ public class scene_Change : MonoBehaviour
 {
     public static int next_Lvl = 0;
     public static bool change = false;
+    private player_Script player;
+
 
     private void Update() {
         if(change)
