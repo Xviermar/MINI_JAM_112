@@ -34,10 +34,9 @@ public class store_Timer : MonoBehaviour
         }
         
         //Floor to int redondea el numero
-        float min = Mathf.FloorToInt(time / 60);
         float seg = Mathf.FloorToInt(time % 60);
 
-        text.text = string.Format("{00:00}:{01:00}", min, seg);
+        text.text = string.Format("{00}", seg);
     }
 
 }
