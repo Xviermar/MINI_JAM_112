@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class player_Script : MonoBehaviour
 {
-    public bool block = false;
+    public bool can_block = true;
     //public static int health = 175;
 
     private enemy_Script enemy;
@@ -18,6 +18,9 @@ public class player_Script : MonoBehaviour
     private Animator anim;
 
     [SerializeField] private timer timer;
+    [SerializeField] private GameObject melee_Icon;
+    [SerializeField] private GameObject magic_Icon;
+    [SerializeField] private GameObject block_Icon;
     
     
     void Start()
@@ -43,11 +46,12 @@ public class player_Script : MonoBehaviour
         }
         
         //Melee
-        if(Input.GetKeyDown(KeyCode.UpArrow) && can_Attack)
+        if(Input.GetKeyDown(KeyCode.UpArrow) && can_Attack && can_block)
         {
             if(Mathf.RoundToInt(time) % 2 == 0)
             {
                 anim.SetBool("Attack", true);
+                melee_Icon.GetComponent<SpriteRenderer>().material.color = new Color(1, 1, 1, 0.25f);
                 can_Attack = false;
                 StartCoroutine(dam(melee_Dam, false));
                 
@@ -62,11 +66,12 @@ public class player_Script : MonoBehaviour
         //Melee Rampage
         else if(Input.GetKey(KeyCode.UpArrow))
         {
-            if(Input.GetKey(KeyCode.RightArrow) && can_Attack)
+            if(Input.GetKey(KeyCode.RightArrow) && can_Attack && can_block)
             {
                 if(Mathf.RoundToInt(time) % 2 == 0)
                 {
-                   anim.SetBool("Attack", true);
+                    anim.SetBool("Attack", true);
+                    melee_Icon.GetComponent<SpriteRenderer>().material.color = new Color(1, 1, 1, 0.25f);
                     StartCoroutine(dam(melee_Dam, true));
 
                     can_Attack = false;
@@ -77,12 +82,13 @@ public class player_Script : MonoBehaviour
         }
 
         //Magic
-        else if(Input.GetKeyDown(KeyCode.LeftArrow) && can_Attack)
+        else if(Input.GetKeyDown(KeyCode.LeftArrow) && can_Attack && can_block)
         {
             switch(time){
                 case float n when(n >= 3.8f && n <= 5.2f):
                     
                     anim.SetBool("Attack", true);
+                    magic_Icon.GetComponent<SpriteRenderer>().material.color = new Color(1, 1, 1, 0.25f);
                     StartCoroutine(dam(magic_Dam, false));
                     
                     can_Attack = false;
@@ -92,6 +98,7 @@ public class player_Script : MonoBehaviour
 
                 case float n when(n >= 8.8f && n <= 10f):
                     anim.SetBool("Attack", true);
+                    magic_Icon.GetComponent<SpriteRenderer>().material.color = new Color(1, 1, 1, 0.25f);
                     StartCoroutine(dam(magic_Dam, false));
                     
                     can_Attack = false;
@@ -104,11 +111,12 @@ public class player_Script : MonoBehaviour
         //Magic Rampage
         else if(Input.GetKey(KeyCode.LeftArrow))
         {
-            if(Input.GetKey(KeyCode.RightArrow) && can_Attack)
+            if(Input.GetKey(KeyCode.RightArrow) && can_Attack && can_block)
             {
                 switch(time){
                 case float n when(n >= 3.8f && n <= 5.2f):
                     anim.SetBool("Attack", true);
+                    magic_Icon.GetComponent<SpriteRenderer>().material.color = new Color(1, 1, 1, 0.25f);
                     StartCoroutine(dam(magic_Dam, true));
 
                     can_Attack = false;
@@ -118,6 +126,7 @@ public class player_Script : MonoBehaviour
 
                 case float n when(n >= 8.8f && n <= 10f):
                     anim.SetBool("Attack", true);
+                    magic_Icon.GetComponent<SpriteRenderer>().material.color = new Color(1, 1, 1, 0.25f);
                     StartCoroutine(dam(magic_Dam, true));
 
                     can_Attack = false;
@@ -133,8 +142,9 @@ public class player_Script : MonoBehaviour
         {
           
             
-            block = true;
+            can_block = false;
             can_Attack = false;
+            block_Icon.GetComponent<SpriteRenderer>().material.color = new Color(1, 1, 1, 0.25f);
             Debug.Log("Block");
             StartCoroutine(block_Timer(2f));
             
@@ -143,7 +153,7 @@ public class player_Script : MonoBehaviour
 
     public void take_Damage(int damage)
     {
-        if(block)
+        if(can_block == false)
         {
             player_Health.current_Health -= (damage - defence);
             slider.value = player_Health.current_Health;
@@ -159,7 +169,8 @@ public class player_Script : MonoBehaviour
     IEnumerator block_Timer(float i)
     {
         yield return new WaitForSeconds(i);
-        block = false;
+        block_Icon.GetComponent<SpriteRenderer>().material.color = new Color(1f, 1f, 1f, 1f);
+        can_block = true;
         can_Attack = true;
     }
     
@@ -167,6 +178,8 @@ public class player_Script : MonoBehaviour
     IEnumerator attack_Timer(float i)
     {
         yield return new WaitForSeconds(i);
+        melee_Icon.GetComponent<SpriteRenderer>().material.color = new Color(1, 1, 1, 1f);
+        magic_Icon.GetComponent<SpriteRenderer>().material.color = new Color(1, 1, 1, 1f);
         can_Attack = true;
     }
 
