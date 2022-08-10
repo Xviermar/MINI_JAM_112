@@ -195,7 +195,12 @@ MonoBehaviour:
 
     -
     When starting a new fight, you''ll regain some health and will fight a stronger
-    Demon.'
+    Demon.
+
+
+    - Hold Shield and one of your attacks (either Up or Left Keys) to
+    activate their Rampage, now inflict 1.2x more Damage at the expense of their
+    usage on that clock rotation.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7e26943d9247b934a87357f6deb784b8, type: 2}
   m_sharedMaterial: {fileID: -2691813241006787048, guid: 7e26943d9247b934a87357f6deb784b8, type: 2}
@@ -718,7 +723,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 820, y: -251}
+  m_AnchoredPosition: {x: 764, y: -258}
   m_SizeDelta: {x: 193.59, y: 81.849}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &926190830
@@ -889,8 +894,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 813.7899, y: -193.23001}
-  m_SizeDelta: {x: 181.172, y: 33.696}
+  m_AnchoredPosition: {x: 764.0001, y: -200.22998}
+  m_SizeDelta: {x: 211.527, y: 33.696}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1194384700
 MonoBehaviour:
@@ -912,7 +917,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Up on Pad: Melee'
+  m_text: 'Right on Pad: Shield'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e51090ff270aa774e8e0953dddf32fbc, type: 2}
   m_sharedMaterial: {fileID: -5645085887863849667, guid: e51090ff270aa774e8e0953dddf32fbc, type: 2}
@@ -1024,7 +1029,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 110, y: -437}
+  m_AnchoredPosition: {x: 258, y: -278}
   m_SizeDelta: {x: 193.59, y: 81.849}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1303736819
@@ -1237,7 +1242,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 110.00001, y: -379.22}
+  m_AnchoredPosition: {x: 258.0001, y: -220.22}
   m_SizeDelta: {x: 193.59, y: 33.696}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1416657630
@@ -2093,7 +2098,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1920, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
