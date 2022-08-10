@@ -25,6 +25,10 @@ public class Buttons : MonoBehaviour
         scene_Change.next_Lvl = 0;
         player_Health.max_Health = 175;
         player_Health.current_Health = player_Health.max_Health;
+        player_Script.defence = 10;
+        player_Script.melee_Dam = 25;
+        player_Script.magic_Dam = 45;
+        player_State.score = 0;
         level_Scaling.level = 1;
     }
 
@@ -34,6 +38,9 @@ public class Buttons : MonoBehaviour
         scene_Change.next_Lvl = 0;
         player_Health.max_Health = 175;
         player_Health.current_Health = player_Health.max_Health;
+        player_Script.defence = 10;
+        player_Script.melee_Dam = 25;
+        player_Script.magic_Dam = 45;
         level_Scaling.level = 1;
     }
 }
