@@ -51,13 +51,17 @@ public class player_State : MonoBehaviour
         score_S.add_Score(enemy.score);
         score += player_Health.current_Health;
         player_Health.current_Health += 60;
-        level_Scaling.level += 3;
+        level_Scaling.level += 6;
         scene_Change.next_Lvl += 1;
         enemy.can_Attack = true;
         
-         if(scene_Change.next_Lvl >= 2)
+         if(scene_Change.next_Lvl >= 3)
         {
             scene_Change.next_Lvl = 0;
+            Buy.price_1 += 150;
+            Buy.price_2 += 150;
+            Buy.price_3 += 150;
+            enemy.score += 50;
         }
 
         SceneManager.LoadScene("store");

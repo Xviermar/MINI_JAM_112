@@ -24,6 +24,11 @@ public class scene_Change : MonoBehaviour
                     SceneManager.LoadScene("Afrobub");
                     change = false;
                     break;
+
+                case 2:
+                    SceneManager.LoadScene("Demonny Benet");
+                    change = false;
+                    break;
             }
         }
     }

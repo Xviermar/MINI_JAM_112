@@ -744,6 +744,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Demonny Benet
       objectReference: {fileID: 0}
+    - target: {fileID: 4078492939348320750, guid: 269b7401432c14b4cb1ac0fae88681a2, type: 3}
+      propertyPath: score
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078492939348320750, guid: 269b7401432c14b4cb1ac0fae88681a2, type: 3}
+      propertyPath: damage
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078492939348320750, guid: 269b7401432c14b4cb1ac0fae88681a2, type: 3}
+      propertyPath: health
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078492939348320750, guid: 269b7401432c14b4cb1ac0fae88681a2, type: 3}
+      propertyPath: defence
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078492939348320750, guid: 269b7401432c14b4cb1ac0fae88681a2, type: 3}
+      propertyPath: mag_Damage
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 4078492939348320751, guid: 269b7401432c14b4cb1ac0fae88681a2, type: 3}
       propertyPath: m_RootOrder
       value: 7

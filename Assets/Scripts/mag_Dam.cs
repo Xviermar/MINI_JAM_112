@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Defence : MonoBehaviour
+public class mag_Dam : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI text;
+   [SerializeField] private TextMeshProUGUI text;
 
     void Update()
     {
@@ -19,6 +19,6 @@ public class Defence : MonoBehaviour
         //Floor to int redondea el numero
         
 
-        text.text = string.Format("{0000000}", player_Script.defence);
+        text.text = string.Format("{0000000}", player_Script.magic_Dam);
     }
 }

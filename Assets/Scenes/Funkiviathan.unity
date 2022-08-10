@@ -130,6 +130,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4680260275886903542, guid: 2ee07607c08158441b1ca13d0ceec098, type: 3}
+      propertyPath: score
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 4680260275886903542, guid: 2ee07607c08158441b1ca13d0ceec098, type: 3}
+      propertyPath: health
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 4680260275886903542, guid: 2ee07607c08158441b1ca13d0ceec098, type: 3}
+      propertyPath: mag_Damage
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 4680260275886903545, guid: 2ee07607c08158441b1ca13d0ceec098, type: 3}
       propertyPath: m_RootOrder
       value: 1

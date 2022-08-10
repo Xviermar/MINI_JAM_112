@@ -17,9 +17,9 @@ public class enemy_Script : MonoBehaviour
     private Slider slider;
     private Animator anim;
     
-    [SerializeField] private int defence = 5 + level_Scaling.level;
-    [SerializeField] private int damage = 15 + level_Scaling.level;
-    [SerializeField] private int mag_Damage = 35 + level_Scaling.level;
+    [SerializeField] private int defence;
+    [SerializeField] private int damage;
+    [SerializeField] private int mag_Damage;
 
     
 
@@ -29,6 +29,11 @@ public class enemy_Script : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<player_Script>();
         slider = GameObject.FindGameObjectWithTag("E Health Bar").GetComponent<Slider>();
         anim = gameObject.GetComponent<Animator>();
+        
+        mag_Damage = mag_Damage + level_Scaling.level;
+        damage = damage + level_Scaling.level;
+        defence = defence + level_Scaling.level;
+
         slider.maxValue = health;
         slider.value = health;
     }
@@ -40,7 +45,7 @@ public class enemy_Script : MonoBehaviour
 
     private void attack(float time)
     {
-        random = Random.Range(1,10);
+        
         
         if(anim.GetBool("Attack"))
         {
@@ -49,36 +54,37 @@ public class enemy_Script : MonoBehaviour
         
         if(start == false)
         {
-            StartCoroutine(wait_1());
+            StartCoroutine(wait_1(1f));
         }
 
+        random = Random.Range(1,10);
         if(can_Attack && start)
         {
+            
             switch(random){
-                case int n when(n >= 1 && n <= 4):
+                case int n when(n >= 1 && n <= 4) && block == false:
+                    
                     anim.SetBool("Attack", true);
                     
-                    
                     can_Attack = false;
-                    Debug.Log("Attack_E");
+                    
                     StartCoroutine(dam(damage));
-                    StartCoroutine(wait(2f));
+                    StartCoroutine(wait(2.5f));
                     break;
 
-                case int n when(n >= 6 && n <= 9f):
+                case int n when(n >= 7 && n <= 9):
                     can_Attack = false;
                     block = true;
                     Debug.Log("Block_E");
                     StartCoroutine(wait(2f));
                     break;
 
-                case int n when(n == 5 || n == 10):
+                case int n when(n == 5 || n == 10) && block == false:
                     anim.SetBool("Attack", true);
                     player.take_Damage(mag_Damage);
                     
                     can_Attack = false;
-                    Debug.Log("Magic_E");
-                    StartCoroutine(wait(4f));
+                    StartCoroutine(wait(4.5f));
                     break;
             }
         }
@@ -102,14 +108,13 @@ public class enemy_Script : MonoBehaviour
     IEnumerator wait(float i)
     {
         yield return new WaitForSeconds(i);
-      
         can_Attack = true;
         block = false;
     }
 
-    IEnumerator wait_1()
+    IEnumerator wait_1(float e)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(e);
         start = true;
     }
 
