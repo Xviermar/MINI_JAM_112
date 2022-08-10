@@ -666,7 +666,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 76943264}
         m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
-        m_MethodName: start_Game
+        m_MethodName: restart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

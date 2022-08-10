@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class player_Script : MonoBehaviour
 {
     public bool can_block = true;
-    //public static int health = 175;
+    public GameObject blood;
 
     private enemy_Script enemy;
     public static int defence = 10;
@@ -21,6 +21,7 @@ public class player_Script : MonoBehaviour
     [SerializeField] private GameObject melee_Icon;
     [SerializeField] private GameObject magic_Icon;
     [SerializeField] private GameObject block_Icon;
+    [SerializeField] private GameObject block_a;
     
     
     void Start()
@@ -133,12 +134,10 @@ public class player_Script : MonoBehaviour
         //Dodge hacer el dodge cargado cuando haya enemigo pra testear
         else if(Input.GetKeyDown(KeyCode.RightArrow))
         {
-          
-            
             can_block = false;
             can_Attack = false;
             block_Icon.GetComponent<SpriteRenderer>().material.color = new Color(1, 1, 1, 0.25f);
-            Debug.Log("Block");
+            block_a.SetActive(true);
             StartCoroutine(block_Timer(2f));
             
         }
@@ -163,6 +162,7 @@ public class player_Script : MonoBehaviour
     {
         yield return new WaitForSeconds(i);
         block_Icon.GetComponent<SpriteRenderer>().material.color = new Color(1f, 1f, 1f, 1f);
+        block_a.SetActive(false);
         can_block = true;
         can_Attack = true;
     }
@@ -189,9 +189,13 @@ public class player_Script : MonoBehaviour
         if(rampage)
         {
             enemy.take_Damage(damage * Mathf.RoundToInt(ramp));
+            GameObject b = Instantiate(blood, enemy.transform.position, Quaternion.identity);
+            b.transform.position = new Vector3(enemy.transform.position.x,enemy.transform.position.y, -5);
         }else
         {
             enemy.take_Damage(damage);
+            GameObject b = Instantiate(blood, enemy.transform.position, Quaternion.identity);
+            b.transform.position = new Vector3(enemy.transform.position.x,enemy.transform.position.y, -5);
         }
     }
 

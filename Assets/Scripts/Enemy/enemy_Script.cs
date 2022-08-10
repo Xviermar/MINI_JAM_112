@@ -9,6 +9,7 @@ public class enemy_Script : MonoBehaviour
     public int health = 100;
     public int score;
     public bool can_Attack = true;
+    public GameObject blood_Splash;
     
     private player_Script player;
     private timer timer;
@@ -20,7 +21,7 @@ public class enemy_Script : MonoBehaviour
     [SerializeField] private int defence;
     [SerializeField] private int damage;
     [SerializeField] private int mag_Damage;
-
+    [SerializeField] private GameObject block_A;
     
 
     void Start()
@@ -75,15 +76,16 @@ public class enemy_Script : MonoBehaviour
                 case int n when(n >= 7 && n <= 9):
                     can_Attack = false;
                     block = true;
-                    Debug.Log("Block_E");
+                    block_A.SetActive(true);
                     StartCoroutine(wait(2f));
                     break;
 
                 case int n when(n == 5 || n == 10) && block == false:
                     anim.SetBool("Attack", true);
-                    player.take_Damage(mag_Damage);
                     
                     can_Attack = false;
+
+                    StartCoroutine(dam(mag_Damage));
                     StartCoroutine(wait(4.5f));
                     break;
             }
@@ -110,6 +112,7 @@ public class enemy_Script : MonoBehaviour
         yield return new WaitForSeconds(i);
         can_Attack = true;
         block = false;
+        block_A.SetActive(false);
     }
 
     IEnumerator wait_1(float e)
@@ -129,6 +132,8 @@ public class enemy_Script : MonoBehaviour
     IEnumerator dam(int damage)
     {
         yield return new WaitForSeconds(1f);
+        GameObject g = Instantiate(blood_Splash, player.transform.position, Quaternion.identity);
+        g.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -5);
         player.take_Damage(damage);
     }
 }

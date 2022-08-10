@@ -62,6 +62,7 @@ public class player_State : MonoBehaviour
             Buy.price_2 += 150;
             Buy.price_3 += 150;
             enemy.score += 50;
+            enemy.health += 80;
         }
 
         SceneManager.LoadScene("store");
