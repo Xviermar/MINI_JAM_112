@@ -24,13 +24,13 @@ public class Buy : MonoBehaviour
             {
                 if(item_1.name == "Holy Water")
                 {
-                    if(player_Health.current_Health == player_Health.max_Health)
+                    if(player_Health.current_Health >= player_Health.max_Health)
                     {
                         player_Health.max_Health += 75;
                         player_Health.current_Health = player_Health.max_Health;
-                    }
+                    }else{player_Health.current_Health += 75;}
                     
-                    player_Health.current_Health += 75;
+                    
                 }
                 else if(item_1.name == "Breatrix Chastity")
                 {
@@ -63,13 +63,11 @@ public class Buy : MonoBehaviour
             {
                  if(item_2.name == "Holy Water")
                 {
-                    if(player_Health.current_Health == player_Health.max_Health)
+                    if(player_Health.current_Health >= player_Health.max_Health)
                     {
                         player_Health.max_Health += 75;
                         player_Health.current_Health = player_Health.max_Health;
-                    }
-
-                    player_Health.current_Health += 75;
+                    }else{player_Health.current_Health += 75;}
                 }
                 else if(item_2.name == "Beatrix Chastity")
                 {
@@ -102,13 +100,11 @@ public class Buy : MonoBehaviour
             {
                  if(item_3.name == "Holy Water")
                 {
-                    if(player_Health.current_Health == player_Health.max_Health)
+                   if(player_Health.current_Health >= player_Health.max_Health)
                     {
                         player_Health.max_Health += 75;
                         player_Health.current_Health = player_Health.max_Health;
-                    }
-                    
-                    player_Health.current_Health += 75;
+                    }else{player_Health.current_Health += 75;}
                 }
                 else if(item_3.name == "Beatrix Chastity")
                 {

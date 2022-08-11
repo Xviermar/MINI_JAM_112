@@ -46,11 +46,15 @@ public class player_State : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         GameObject.FindGameObjectWithTag("Enemy").GetComponent<Animator>().SetBool("Death",false);
-        //Destroy(GameObject.FindGameObjectWithTag("Enemy"));
 
         score_S.add_Score(enemy.score);
         score += player_Health.current_Health;
-        player_Health.current_Health += 60;
+        
+        if(player_Health.current_Health <= player_Health.max_Health)
+        {
+            player_Health.current_Health += 60;
+        }
+        
         level_Scaling.level += 6;
         scene_Change.next_Lvl += 1;
         enemy.can_Attack = true;
@@ -58,10 +62,10 @@ public class player_State : MonoBehaviour
          if(scene_Change.next_Lvl >= 3)
         {
             scene_Change.next_Lvl = 0;
-            Buy.price_1 += 150;
-            Buy.price_2 += 150;
-            Buy.price_3 += 150;
-            enemy.score += 50;
+            Buy.price_1 += 100;
+            Buy.price_2 += 100;
+            Buy.price_3 += 100;
+            enemy.score += 100;
             enemy.health += 80;
         }
 
