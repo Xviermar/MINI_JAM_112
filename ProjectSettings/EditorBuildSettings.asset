@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: ddfe447b1ecbc7343ac20c3666c71a47
   - enabled: 1
+    path: Assets/Scenes/Tutorial+Lore_Scene.unity
+    guid: 4e09babc3d2b7d5408a5080b71225dbe
+  - enabled: 1
     path: Assets/Scenes/Funkiviathan.unity
     guid: 2992e6a3dc476104c9059a08724673c8
   - enabled: 1

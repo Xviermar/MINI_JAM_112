@@ -7,10 +7,16 @@ public class Buttons : MonoBehaviour
 {
     public void start_Game()
     {
-        SceneManager.LoadScene("Funkiviathan");
+        SceneManager.LoadScene("Tutorial+Lore_Scene");
         player_Health.max_Health = 175;
         player_Health.current_Health = player_Health.max_Health;
         level_Scaling.level = 1;
+    }
+
+    public void next()
+
+    {
+        SceneManager.LoadScene("Funkiviathan");
     }
 
     public void quit_Game()
